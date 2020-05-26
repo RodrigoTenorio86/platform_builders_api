@@ -88,4 +88,11 @@ public class ClienteServiceImpl implements ClienteService{
 		return clienteRepository.findById(id);
 	}
 
+
+
+	@Override
+	public Cliente getByidCliente(Long id) {
+		return clienteRepository.getOne(id);
+	}
+
 }
