@@ -24,7 +24,7 @@ public interface ClienteService {
 	
 	Cliente findByCpf(String cpf);
 	
-	List<Cliente> findByNome(String nome);
+	List<Cliente> findByNomeIgnoreCaseContaining(String nome);
 
 	Optional<Cliente> findById(Long id);
 

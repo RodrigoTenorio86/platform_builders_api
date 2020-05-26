@@ -5,6 +5,8 @@ import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,7 +42,7 @@ public class ClienteController {
 	
 	@PostMapping
 	@Transactional(rollbackFor = Exception.class)
-	public ResponseEntity<?> createCliente(@RequestBody ClienteDTO clienteDTO){
+	public ResponseEntity<?> createCliente(@RequestBody @Valid ClienteDTO clienteDTO){
 		Cliente cliente = clienteService.save(clienteDTO);
 		return new ResponseEntity<>(cliente, HttpStatus.CREATED);		
 	}
@@ -55,7 +57,7 @@ public class ClienteController {
 	
 	@PatchMapping
 	@Transactional(rollbackFor = Exception.class)
-	public ResponseEntity<?> partialChange(@RequestBody ClienteDTO clienteDTO){
+	public ResponseEntity<?> partialChange(@RequestBody @Valid ClienteDTO  clienteDTO){
 		verifyIfClientExists(clienteDTO.getId());
 	    Cliente cliente =	clienteService.partialChange(clienteDTO);
 		return new ResponseEntity<>(cliente,HttpStatus.OK);
@@ -63,21 +65,21 @@ public class ClienteController {
 	
 	@PutMapping
 	@Transactional(rollbackFor = Exception.class)
-	public ResponseEntity<?> updateClient( @RequestBody Cliente cliente){
+	public ResponseEntity<?> updateClient( @RequestBody @Valid Cliente cliente){
 		verifyIfClientExists(cliente.getId());
 		cliente = clienteService.update(cliente);
 		return new ResponseEntity<>(cliente, HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/{cpf}")
+	@GetMapping(value = "cpf/{cpf}")
 	public ResponseEntity<?> findByCpf(@PathVariable("cpf") String cpf){
 		Cliente cliente = clienteService.findByCpf(cpf);
 		return new ResponseEntity<>(cliente, HttpStatus.OK);
 	}
 	
-	@GetMapping(value = "/{nome}")
+	@GetMapping(value = "nome/{nome}")
 	public ResponseEntity<?> findByNome(@PathVariable("nome") String nome ){
-		List<Cliente> clientes= clienteService.findByNome(nome);
+		List<Cliente> clientes= clienteService.findByNomeIgnoreCaseContaining(nome);
 		return new ResponseEntity<>(clientes, HttpStatus.OK);
 	}
 	
@@ -85,7 +87,7 @@ public class ClienteController {
 	public ResponseEntity<?> getByIdClient(@PathVariable("id") Long id){
 		verifyIfClientExists(id);
 		Cliente cliente = clienteService.getByidCliente(id);
-		return null;
+		return new ResponseEntity<>(cliente, HttpStatus.OK);
 	}
 	
 	private void verifyIfClientExists(Long id) {

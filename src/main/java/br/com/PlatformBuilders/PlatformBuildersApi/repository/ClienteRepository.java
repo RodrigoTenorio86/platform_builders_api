@@ -9,6 +9,7 @@ import br.com.PlatformBuilders.PlatformBuildersApi.models.Cliente;
 @Repository
 public interface ClienteRepository extends JpaRepository<Cliente, Long>{
 	Cliente findByCpf(String cpf);
-	List<Cliente> findByNome(String nome);
+	List<Cliente> findByNomeIgnoreCaseContaining(String nome);
+	
 
 }

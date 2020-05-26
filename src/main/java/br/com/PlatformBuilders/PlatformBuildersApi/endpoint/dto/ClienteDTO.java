@@ -2,6 +2,8 @@ package br.com.PlatformBuilders.PlatformBuildersApi.endpoint.dto;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 
@@ -18,9 +20,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ClienteDTO {
 	private Long id;
-	
+	@NotNull
 	private String nome;
+	@NotNull
 	private String cpf;
+	@NotNull
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
 	private LocalDate dataNascimento;
 	private Integer idade;

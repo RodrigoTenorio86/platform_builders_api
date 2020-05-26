@@ -76,8 +76,8 @@ public class ClienteServiceImpl implements ClienteService{
 
 
 	@Override
-	public List<Cliente> findByNome(String nome) {
-		List<Cliente> clientes = clienteRepository.findByNome(nome);
+	public List<Cliente> findByNomeIgnoreCaseContaining(String nome) {
+		List<Cliente> clientes = clienteRepository.findByNomeIgnoreCaseContaining(nome);
 		return clientes;
 	}
 
