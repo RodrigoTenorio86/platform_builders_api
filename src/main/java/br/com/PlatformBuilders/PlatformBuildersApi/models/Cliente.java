@@ -1,3 +1,6 @@
+/**
+ * @author rtenorio
+ */
 package br.com.PlatformBuilders.PlatformBuildersApi.models;
 
 import java.time.LocalDate;
@@ -8,8 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.UniqueElements;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

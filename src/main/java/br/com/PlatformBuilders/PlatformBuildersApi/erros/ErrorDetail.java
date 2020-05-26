@@ -1,3 +1,6 @@
+/**
+ * @author rtenorio
+ */
 package br.com.PlatformBuilders.PlatformBuildersApi.erros;
 
 import java.time.LocalDateTime;

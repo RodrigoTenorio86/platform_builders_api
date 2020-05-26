@@ -1,3 +1,6 @@
+/**
+ * @author rtenorio
+ */
 package br.com.PlatformBuilders.PlatformBuildersApi.endpoint;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
