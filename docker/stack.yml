@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql
+    ports:
+      - "3306:3306"
+    environment:
+       MYSQL_ROOT_PASSWORD: Rr123
+       MYSQL_USER: root
+       MYSQL_DATABASE: plaform
+       MYSQL_PASSWORD: Rr123
+
+    healthcheck:
+      test: ["CMD-SHELL", 'mysqladmin ping']
+      interval: 10s
+      timeout: 2s
+      retries: 10
